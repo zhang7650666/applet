@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: '闲钱宝'
+  navigationBarTitleText: '七分钱'
 }

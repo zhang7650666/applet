@@ -1,7 +1,7 @@
 <template>
-  <div class="index-wp pt-10">
+  <div class="index-wp">
     <!-- swiper -->
-    <nut-swiper :init-page="page" :pagination-visible="true" pagination-color="#426543" auto-play="3000">
+    <nut-swiper :init-page="state.swiperPage" :pagination-visible="true" pagination-color="#426543" auto-play="3000">
       <nut-swiper-item>
         <img src="https://storage.360buyimg.com/jdc-article/NutUItaro34.jpg" alt="" />
       </nut-swiper-item>
@@ -26,7 +26,7 @@
         <div class="profit">
           <p><span class="desc">累计收益</span><nut-price :price="8888.01" position="after" symbol="元" /></p>
         </div>
-        <div class="record"><nut-button size="mini" type="primary">迷你按钮</nut-button></div>
+        <div class="record"><nut-button size="mini" type="primary" @click="handleRecord">赚钱记录</nut-button></div>
       </nut-cell>
       <!-- 通知 -->
       <nut-noticebar
@@ -42,18 +42,9 @@
             <p class="detail">查看详情 <IconFont name="rect-right"></IconFont></p>
         </template>
       </nut-noticebar>
-      <nut-tabs v-model="value" style="margin-top: 10px;">
-        <nut-tab-pane title="每日任务" pane-key="0">
-          <div>
-            <img src="https://img11.360buyimg.com/imagetools/jfs/t1/137646/13/7132/1648/5f4c748bE43da8ddd/a3f06d51dcae7b60.png" />
-
-          </div>
-          <div>test11111</div>
-          <div>test11111</div>
-          <div>test11111</div>
-          <div>test11111</div>
-          <div>test11111</div>
-          <div>test11111</div>
+      <nut-tabs v-model="state.tabVal" class="my-2">
+        <nut-tab-pane title="每日任务" pane-key="0" class="!p-0">
+          <record-list :listCount="state.listCount"></record-list>
         </nut-tab-pane>
         <nut-tab-pane title="新人任务" pane-key="1"> Tab 2 </nut-tab-pane>
       </nut-tabs>
@@ -61,14 +52,26 @@
   </div>
 </template>
 <script setup lang="ts" name="Index">
-import { ref } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import { IconFont} from '@nutui/icons-vue-taro';
+import recordList from '../../components/record_list'
 /** 设置页面属性 */
 definePageConfig({
-  navigationBarTitleText: '闲钱宝'
+  navigationBarTitleText: '七分钱'
 });
-const value = ref('0');
-const page = ref(2);
+
+const state = reactive({
+  tabVal: '0', // tab切换
+  swiperPage: 2, // swiper当前项
+})
+
+// 跳转赚钱记录
+const handleRecord = () => {
+  // 传入参数 id=2&type=test
+Taro.navigateTo({
+  url: '/pages/record/index'
+})
+}
 </script>
 <style lang="scss">
 .nut-swiper-item {
@@ -116,6 +119,9 @@ const page = ref(2);
       justify-content: center;
       align-items: center;
     }
+  }
+  .list-item-first {
+    margin-top: 16px;
   }
 }
 </style>
