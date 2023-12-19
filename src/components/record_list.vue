@@ -1,8 +1,8 @@
 <template>
-  <view>
-    <nut-list :height="50" :listData="props.listCount" @scroll-bottom="handleScroll">
+  <div>
+    <nut-list :listData="props.listCount" @scroll-bottom="handleScroll" >
         <template v-slot="{ item, index }">
-          <div class="flex flex-justify-between items-center bg-[#f0f2f5] rounded p-2 my-1" :class="{'list-item-first': index === 0 }">
+          <div class="flex items-center bg-[#f0f2f5] rounded p-2 my-1" :class="{'list-item-first': index === 0 }">
             <nut-avatar size="normal">
               <img
                 :src="item.imgUrl"
@@ -12,14 +12,14 @@
               <p class="font-size-28 truncate w-460">{{item.title}}</p>
               <p class="font-size-24 truncate w-460 text-[#909ca4]">{{item.desc}}</p>
             </div>
-            <div class="text-center">
+            <div class="text-right">
               <p>{{item.amount}}</p>
-              <nut-button type="info" size="small">立即领取</nut-button>
+              <!-- <nut-button type="info" size="small" >立即领取</nut-button> -->
             </div>
-            </div>
+          </div>
         </template>
       </nut-list>
-  </view>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -34,12 +34,17 @@ const props = defineProps({
   }
 })
 
-
 const handleScroll = () => {
   console.log('滚动加载')
 };
 </script>
 
-<style>
-
+<style lang="scss">
+.nut-list {
+  height: calc(100vh - 690px) !important;
+  overflow-y: scroll;
+}
+.nut-list-phantom {
+  height: auto !important;
+}
 </style>

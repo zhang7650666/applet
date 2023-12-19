@@ -1,15 +1,22 @@
 <template>
   <div class="index-wp">
-
+    <!-- 收益 -->
+    <!-- <nut-cell class="profit-wp">
+        <div class="profit">
+          <p><span class="desc">累计收益:</span></p>
+          <p><nut-price :price="8888.01" position="after" symbol="元" /></p>
+        </div>
+      </nut-cell> -->
+      <nut-cell title="累计收益 8888.01元" ></nut-cell>
     <div class="main-wp">
       <record-list :listCount="state.listCount"></record-list>
     </div>
   </div>
 </template>
-<script setup lang="ts" name="Index">
+<script setup lang="ts" name="Record">
+import recordList from '@/components/record_list.vue'
 import { ref, reactive, onMounted } from 'vue';
-import { IconFont} from '@nutui/icons-vue-taro';
-import recordList from '../../components/record_list'
+
 
 /** 设置页面属性 */
 definePageConfig({
@@ -33,14 +40,29 @@ const state = reactive({
   ],
 })
 
-const handleScroll = () => {
-  console.log('滚动加载')
-};
-onMounted(() => {
-})
+
 </script>
 <style lang="scss">
-
+// 收益
+.profit-wp{
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    .profit {
+      flex: 1;
+      display: flex;
+      // justify-content: center;
+      text-align: center;
+      .desc {
+        font-size: 24px;
+        font-weight: 400;
+      }
+    }
+    .record{
+      justify-content: center;
+      align-items: center;
+    }
+  }
 .list-item-first {
     margin-top: 16px;
   }

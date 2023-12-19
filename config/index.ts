@@ -1,5 +1,6 @@
 import Components from 'unplugin-vue-components/webpack';
 import NutUIResolver from '@nutui/auto-import-resolver';
+import path from 'path'
 // import unocss from 'unocss/webpack'
 const UnoCSS = require('@unocss/webpack').default
 
@@ -37,8 +38,18 @@ const config = {
   cache: {
     enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
   },
+  alias: {
+    '@/components': path.resolve(__dirname, '..', 'src/components'),
+    '@/utils': path.resolve(__dirname, '..', 'src/utils'),
+    '@/package': path.resolve(__dirname, '..', 'package.json'),
+    '@/project': path.resolve(__dirname, '..', 'project.config.json'),
+  },
   mini: {
-
+    miniCssExtractPluginOptions: {
+      // filename: '[name].css',
+      // chunkFilename: '[name].css',
+      ignoreOrder: true,
+    },
     webpackChain(chain) {
       chain.plugin('unocss').use(UnoCSS());
       chain.plugin('unplugin-vue-components').use(Components({

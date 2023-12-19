@@ -1,7 +1,8 @@
 export default {
   pages: [
     'pages/index/index',
-    'pages/my/index'
+    'pages/my/index',
+    'pages/record/index'
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -16,6 +17,6 @@ export default {
     }, {
       "pagePath": "pages/my/index",
       "text": "我的"
-    }]
+    }],
   },
 }
