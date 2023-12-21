@@ -49,12 +49,15 @@
         </nut-tab-pane>
         <nut-tab-pane title="新人任务" pane-key="1"> Tab 2 </nut-tab-pane>
       </nut-tabs>
+      <tab-bar></tab-bar>
     </div>
+
   </div>
 </template>
 <script setup lang="ts" name="Index">
 import recordList from '@/components/record_list.vue'
-import { ref, reactive, onMounted } from 'vue';
+import tabBar from '@/components/tabbar.vue'
+import { ref, reactive, onMounted} from 'vue';
 import { IconFont} from '@nutui/icons-vue-taro';
 import Taro, { Component } from '@tarojs/taro'
 

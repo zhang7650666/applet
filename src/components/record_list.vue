@@ -41,7 +41,7 @@ const handleScroll = () => {
 
 <style lang="scss">
 .nut-list {
-  height: calc(100vh - 690px) !important;
+  height: calc(100vh - 840px) !important;
   overflow-y: scroll;
 }
 .nut-list-phantom {

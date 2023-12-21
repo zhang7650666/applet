@@ -111,12 +111,15 @@
       </view>
 
     </view>
+    <!-- <tab-bar :active="1"></tab-bar> -->
   </view>
 </template>
 
 <script setup lang="ts" name="My">
+// import tabBar from '@/components/tabbar.vue'
 import {reactive} from 'vue'
 import './index.scss'
+
 
 const state = reactive({
   imgUrl: 'https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png'
