@@ -60,12 +60,13 @@ import tabBar from '@/components/tabbar.vue'
 import { ref, reactive, onMounted} from 'vue';
 import { IconFont} from '@nutui/icons-vue-taro';
 import Taro, { Component } from '@tarojs/taro'
+import {request} from '@/utils/request'
 
 /** 设置页面属性 */
 definePageConfig({
   navigationBarTitleText: '七分钱'
 });
-
+console.log('process.env.NODE_ENV', process.env.TARO_APP_API)
 const state = reactive({
   tabVal: '0', // tab切换
   swiperPage: 2, // swiper当前项
@@ -152,6 +153,34 @@ const handleRecord = () => {
     url: '/pages/record/index'
   })
 }
+
+// 获取token
+const getToken = () => {
+  request({
+    path: '/api/Commodity/GetToken?name=333',
+    method: 'GET'
+  })
+  //   Taro.request({
+  //   url: 'http://42.192.114.125:8081/api/Commodity/GetToken?name=333', // 你的API接口地址
+  //   method: 'GET',
+  //   data: {
+
+  //   },
+  // }).then((res) => {
+  //   if (res.statusCode === 200) {
+  //     // 请求成功
+  //     console.log(res.data);
+  //   } else {
+  //     // 请求失败
+  //     console.error('Request failed:', res);
+  //   }
+  // }).catch((error) => {
+  //   // 网络错误或请求中断等情况
+  //   console.error('Request error:', error);
+  // });
+}
+
+getToken();
 </script>
 <style lang="scss">
 .nut-swiper-item {
